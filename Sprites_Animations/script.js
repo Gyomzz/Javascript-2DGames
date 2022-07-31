@@ -65,11 +65,11 @@ animationStates.forEach((state, index) => {
     let frames = {
         loc: [],
     }
-    for (let i = 0; i < state.frames; i++) {
+    Array(state.frames).fill().map((e, i) => {
         let positionX = i * spriteWidth;
         let positionY = index * spriteHeigth;
         frames.loc.push({x: positionX, y: positionY});
-    }
+    })
     spriteAnimations[state.name] = frames;
 })
 
