@@ -92,14 +92,23 @@ class Enemy {
         if(this.x + this.width < 0) this.x = canvas.width
     }
 
-    update() {
-        this.bafMovement();
+    update(patternType) {
+        switch(patternType) {
+            case "wiggle": this.wiggleMovement();
+                break;
+            case "waves": this.wavesMovement();
+                break;
+            case "circular": this.circularMovement();
+                break;
+            case "baf": this.bafMovement();
+                break;
+        }
         // animate Frames
         if(gameFrame % this.flapSpeed === 0) this.frame > 4 ? this.frame = 0 : this.frame++;
     }
 
     draw() {
-        this.update();
+        this.update("wiggle");
         ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight,  this.x, this.y, this.width, this.height);
     }
 }
